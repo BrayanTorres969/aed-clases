@@ -3,7 +3,7 @@ package pe.edu.utp.clase02;
 public class IzquierdaDerechaBurbuja {
     public static void main(String[] args) {
 
-        //Bubuja de Izquierda a derecha
+        //Burbuja de Izquierda a derecha
         int[] datos = {3, 2, 4, 1, 2,0,7,1};
         for (int i = datos.length - 2; i >= 0; i--) {
             for (int j = 0; j <= i; j++) {

@@ -9,6 +9,52 @@ import static pe.edu.utp.semana02.sesion02.SeleccionDirecta.redondear;
 public class IzquierdaDerecha {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int cantProductos;
+        double venta = 0;
+        //validar que la cantidad de productos sea un número positivo
+        do {
+            System.out.println("Ingrese la cantidad de productos");
+            cantProductos = sc.nextInt();
+        } while (cantProductos <= 0);
+
+        Producto[] productos = new Producto[cantProductos];
+
+        //Llenar la lista con los productos ingresados
+        for (int i = 0; i < productos.length; i++) {
+            System.out.println("Ingrese el nombre del producto: " + (i + 1));
+            String nombre = sc.next();
+            System.out.println("Ingrese el precio del producto: " + (i + 1));
+            double precio = sc.nextDouble();
+            Producto producto = new Producto(nombre, precio);
+            productos[i] = producto;
+        }
+
+        //Ordenamiento Burbuja de Izquierda a Derecha
+        for (int i = productos.length - 2; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                if (productos[j].getPrecio() > productos[j + 1].getPrecio()) {
+                    Producto aux = productos[j];
+                    productos[j] = productos[j + 1];
+                    productos[j + 1] = aux;
+                }
+            }
+        }
+        //Mostrar precios de los  más económicos a los más caros.
+        System.out.println("====Lista de Productos (15% Desc) ====");
+        for (Producto prod :
+                productos) {
+            System.out.println(prod.getNombre() + " -> S/ " + prod.getPrecio());
+            venta += prod.getPrecio();
+        }
+        //Mostrar el promedio de la venta
+        double ventProm = venta / productos.length;
+        System.out.println("=======================================");
+        System.out.println("La venta es: S/ " + redondear(venta));
+        System.out.println("El promedio de venta es S/ : " + redondear(ventProm));
+
+        //Fin del Algoritmo
+
+        /*
         List<Producto> productos = new ArrayList<>();
         int cantProductos;
         double venta = 0;
@@ -50,5 +96,7 @@ public class IzquierdaDerecha {
         System.out.println("=======================================");
         System.out.println("La venta es: S/ " + redondear(venta));
         System.out.println("El promedio de venta es S/ : " + redondear(ventProm));
+
+         */
     }
 }

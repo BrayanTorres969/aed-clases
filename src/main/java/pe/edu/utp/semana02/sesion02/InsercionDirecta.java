@@ -9,6 +9,59 @@ import static pe.edu.utp.semana02.sesion02.SeleccionDirecta.redondear;
 public class InsercionDirecta {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int cantProductos;
+        double venta = 0;
+        //validar que la cantidad de productos sea un número positivo
+        do {
+
+            System.out.println("Ingrese la cantidad de productos");
+            cantProductos = sc.nextInt();
+        } while (cantProductos <= 0);
+
+        Producto[] productos = new Producto[cantProductos];
+        //Llenar el array con los productos ingresados
+        for (int i = 0; i < productos.length; i++) {
+            System.out.println("Ingrese el nombre del producto: " + (i + 1));
+            String nombre = sc.next();
+            System.out.println("Ingrese el precio del producto: " + (i + 1));
+            double precio = sc.nextDouble();
+            Producto producto = new Producto(nombre, precio);
+            productos[i] = producto;
+        }
+        //Ordenamiento por Inserción directa
+        for (int i = 1; i <= productos.length - 1; i++) {
+            Producto aux = productos[i];
+            int j = i - 1;
+            while (productos[j].getPrecio() > aux.getPrecio() && j > 0) {
+                productos[j + 1] = productos[j];
+                j = j - 1;
+            }
+
+            if (productos[j].getPrecio() > aux.getPrecio()) {
+                productos[j + 1] = productos[j];
+                productos[j] = aux;
+
+            } else {
+                productos[j + 1] = aux;
+            }
+
+        }
+
+        //Mostrar precios de los  más económicos a los más caros.
+        System.out.println("====Lista de Productos (15% Desc) ====");
+        for (Producto prod :
+                productos) {
+            System.out.println(prod.getNombre() + " -> S/ " + prod.getPrecio());
+            venta += prod.getPrecio();
+        }
+        //Mostrar el promedio de la venta
+        double ventProm = venta / productos.length;
+        System.out.println("=======================================");
+        System.out.println("La venta es: S/ " + redondear(venta));
+        System.out.println("El promedio de venta es S/ : " + redondear(ventProm));
+
+        //Empleando List
+        /*
         List<Producto> productos = new ArrayList<>();
         int cantProductos;
         double venta = 0;
@@ -58,5 +111,6 @@ public class InsercionDirecta {
         System.out.println("=======================================");
         System.out.println("La venta es: S/ " + redondear(venta));
         System.out.println("El promedio de venta es S/ : " + redondear(ventProm));
+         */
     }
 }

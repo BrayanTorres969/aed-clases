@@ -5,7 +5,7 @@ public class DerechaIzquierdaBurbuja {
         //Burbuja de derecha a izquierda
         int[] datos = {3, 2, 4, 1, 2, 0, 7, 1};
 
-        for (int i = 1; i < datos.length - 1; i++) {
+        for (int i = 1; i <= datos.length - 1; i++) {
             for (int j = datos.length - 1; j >= i; j--) {
                 if (datos[j - 1] > datos[j]) {
                     int aux = datos[j - 1];

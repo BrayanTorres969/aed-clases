@@ -1,4 +1,4 @@
-package pe.edu.utp.clase02;
+package pe.edu.utp.semana02.sesion01;
 
 public class InsercionDirecta {
     public static void main(String[] args) {
